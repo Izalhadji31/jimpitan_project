@@ -13,7 +13,7 @@ class User extends Authenticatable
     protected $fillable = [
         'username',
         'password',
-        'role', // admin atau user
+        'role',
     ];
 
     protected $hidden = [
@@ -21,20 +21,12 @@ class User extends Authenticatable
     ];
 
     /**
-     * Menggunakan kolom 'username' sebagai identifikasi utama untuk login
+     * Supaya Auth pakai kolom `username` untuk login
      */
     public function getAuthIdentifierName()
     {
         return 'username';
     }
 
-    /**
-     * Casting password secara otomatis (Laravel 10+ mendukung ini)
-     */
-    protected function casts(): array
-    {
-        return [
-            'password' => 'hashed',
-        ];
-    }
+    // 🔥 JANGAN pakai casts: hashed di sini
 }
